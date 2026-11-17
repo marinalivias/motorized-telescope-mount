@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "author": "Marina",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-a4988", "id": "drv1", "top": -160, "left": 360, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -330,
+      "left": 500,
+      "attrs": { "size": "17", "display": "angle" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnEast",
+      "top": 280,
+      "left": 0,
+      "attrs": { "color": "green", "label": "East" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnWest",
+      "top": 280,
+      "left": 110,
+      "attrs": { "color": "blue", "label": "West" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btnTracking",
+      "top": 280,
+      "left": 220,
+      "attrs": { "color": "yellow", "label": "Tracking" }
+    },
+    { "type": "wokwi-resistor", "id": "r1", "top": -110, "left": 160, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led1", "top": -190, "left": 150, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "uno:9", "drv1:STEP", "orange", [] ],
+    [ "uno:8", "drv1:DIR", "purple", [] ],
+    [ "uno:5V", "drv1:VDD", "red", [] ],
+    [ "uno:GND.2", "drv1:GND.1", "black", [] ],
+    [ "drv1:RESET", "drv1:SLEEP", "gray", [] ],
+    [ "uno:5V", "drv1:VMOT", "red", [] ],
+    [ "uno:GND.3", "drv1:GND.2", "black", [] ],
+    [ "drv1:1B", "stepper1:B-", "green", [] ],
+    [ "drv1:1A", "stepper1:B+", "green", [] ],
+    [ "drv1:2A", "stepper1:A+", "blue", [] ],
+    [ "drv1:2B", "stepper1:A-", "blue", [] ],
+    [ "uno:2", "btnEast:1.l", "green", [] ],
+    [ "btnEast:2.r", "uno:GND.1", "black", [] ],
+    [ "uno:3", "btnWest:1.l", "blue", [] ],
+    [ "btnWest:2.r", "uno:GND.1", "black", [] ],
+    [ "uno:4", "btnTracking:1.l", "yellow", [] ],
+    [ "btnTracking:2.r", "uno:GND.1", "black", [] ],
+    [ "uno:12", "r1:2", "red", [] ],
+    [ "r1:1", "led1:A", "red", [] ],
+    [ "led1:C", "uno:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
